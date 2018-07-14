@@ -8,6 +8,11 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
+# Deck
+
+def addCard(Card):
+    return Card
+
 class Product(Resource):
     def get(self):
         return {
