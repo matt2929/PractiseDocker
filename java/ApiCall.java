@@ -4,6 +4,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 class ApiCall {
 
@@ -38,5 +41,32 @@ class ApiCall {
 		return "Failure to connect!";
 	  }
 	}
-	
+
+	public static String ApiPost(String urlstr, Map<String, Object> params){
+		try{
+		URL url = new URL(urlstr);
+		HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+		StringBuilder postData = new StringBuilder();
+		for(Map.Entry<String,Object> param : params.entrySet()){
+			if(postData.length() != 0) 
+				postData.append('&');
+			postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+			postData.append('=');
+			postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+		}
+		byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		conn.setDoOutput(true);
+		conn.getOutputStream().write(postDataBytes);
+		Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+		String output="";
+		for(int c; (c = in.read()) >= 0;)
+			output+=""+((char)c);
+		return output;
+		}catch(IOException e){
+		return "Failure to connect!";		
+		}
+	}	
+		
 }
