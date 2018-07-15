@@ -3,24 +3,19 @@
 # Import framework
 from flask import Flask
 from flask_restful import Resource, Api
-
+from flask import request
 # Instantiate the app
 app = Flask(__name__)
 api = Api(app)
 
-# Deck
-
-def addCard(Card):
-    return Card
-
-class Product(Resource):
-    def get(self):
-        return {
-            'products': ['Ice cream', 'Chocolate', 'Fruit', 'Eggs']
-        }
-
-# Create routes
-api.add_resource(Product, '/')
+@app.route('/', methods = ['GET', 'POST'])
+def main():
+    if request.method == 'GET':
+        return 'hello'
+    if request.method == 'POST':
+        return request.form
+    else:
+        return '404'
 
 # Run the application
 if __name__ == '__main__':
