@@ -15,7 +15,7 @@ class Card{
 		valueMap[12]="Ace";
 	}
 
-	public String HumanReadable(){
+	public String toString(){
 		return valueMap[value]+":"+suit;		
 	}
 

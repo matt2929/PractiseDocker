@@ -14,7 +14,7 @@ class ApiCall {
 	}
 	
 
-	public static String ApiGet(String urlstr){
+	public static String get(String urlstr){
 		try {
 		URL url = new URL(urlstr);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -29,7 +29,7 @@ class ApiCall {
 		String read;
 		String output="";
 		while ((read = br.readLine()) != null) {
-			output+=read+"\n";
+			output+=read;
 		}
 		conn.disconnect();
 		return output;
@@ -42,7 +42,7 @@ class ApiCall {
 	  }
 	}
 
-	public static String ApiPost(String urlstr, Map<String, Object> params){
+	public static String post(String urlstr, Map<String, Object> params){
 		try{
 		URL url = new URL(urlstr);
 		HttpURLConnection conn = (HttpURLConnection)url.openConnection();

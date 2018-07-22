@@ -6,8 +6,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 class Runner {
-	
+	static Controller controller;	
     public static void main(String[] args){
-	
+	controller = new Controller();
     }
 }
+
