@@ -24,19 +24,23 @@ class Controller{
 	   System.out.println(opponentEmptyDeck()); 
 	   System.out.println(opponentShuffle());
 	  */
-	   for(int i = 0; i < 100; i++){
-	      cards.add(new Card('c', generator.nextInt(50)));
-	   }
-	   view.startGamePrompt();
-	   while(progress){
-		inputToAction(view.gameActionPrompt());
-	   	view.updateView(0, 0, null, null);
-		
-	   }
+		int[] suit_char = new suit[]{'H','D','S','C'};
+		Stack<Card> mainDeck  = new Stack<Card>();
+		for(int suit = 0; suit < 4; suit++){
+			for(int value = 0; value < 13; value++){
+				mainDeck.push(new Card(suit_char[suit], value));
+			}
+		} 
+		shuffleDeck(mainDeck);
+		view.startGamePrompt();
+		while(progress){
+			inputToAction(view.gameActionPrompt());
+		   	view.updateView(0, 0, new Card(''), null);
+		}
 	}
 
 	public void inputToAction(String str){
-
+	
 	}
 
 	public void selfAddCard(){

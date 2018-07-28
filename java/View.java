@@ -90,7 +90,7 @@ class View{
 	private String cardToAscii(Card card){
 		String cardstr = "";
 		for(int i=0; i<20; i++){
-			if(i<5||i>14){
+			if(i<5||i>13){
 				cardstr+="=";	
 			}else{
 				cardstr+=" ";
