@@ -8,27 +8,35 @@ class Controller{
 	ApiCall api;			
 	Random generator;
 	Boolean progress = true;
-	final static String ENDPOINT = "http://localhost:5001/";
+	final String ENDPOINT = "http://localhost:5001/";
 	ArrayList<Card> cards = new ArrayList<Card>();
 	public Controller(){
 	   model = new Model();
 	   view = new View();
 	   api = new ApiCall();
 	   generator = new Random();
-	   System.out.println(opponentAddCard());
+	}
+
+	public void start(){
+	  /* System.out.println(opponentAddCard());
 	   System.out.println(opponentRemoveCard()); 
 	   System.out.println(opponentPlayCard());
 	   System.out.println(opponentEmptyDeck()); 
 	   System.out.println(opponentShuffle());
+	  */
 	   for(int i = 0; i < 100; i++){
 	      cards.add(new Card('c', generator.nextInt(50)));
 	   }
 	   view.startGamePrompt();
 	   while(progress){
-		commitAction(view.gameActionPrompt());
-	   	view.updateView(null, null, null, null);
-
+		inputToAction(view.gameActionPrompt());
+	   	view.updateView(0, 0, null, null);
+		
 	   }
+	}
+
+	public void inputToAction(String str){
+
 	}
 
 	public void selfAddCard(){
